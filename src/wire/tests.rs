@@ -58,3 +58,18 @@ fn an_artist_is_pictured_by_its_cover_or_else_its_poster() {
     assert!(postered.monitored && postered.id == Some(4));
     assert_eq!(covered.cover(), Some("https://example.invalid/cover.jpg"));
 }
+
+#[test]
+fn a_picture_kept_only_inside_lidarr_is_not_published() {
+    let held = artist(
+        r#"{"foreignArtistId":"b10bbbfc","artistName":"The Beatles","id":4,
+            "images":[{"coverType":"poster","remoteUrl":"/config/MediaCover/4/poster.jpg"}]}"#,
+    );
+    let plain = artist(
+        r#"{"foreignArtistId":"c","artistName":"d",
+            "images":[{"coverType":"poster","remoteUrl":"http://example.invalid/poster.jpg"}]}"#,
+    );
+
+    assert_eq!(held.cover(), None);
+    assert_eq!(plain.cover(), Some("http://example.invalid/poster.jpg"));
+}
