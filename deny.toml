@@ -86,5 +86,9 @@ private = { ignore = true }
 [sources]
 unknown-registry = "deny"
 unknown-git = "deny"
-# The core, for the adapter kit and the contracts this adapter speaks, at a pinned commit.
-allow-git = ["https://github.com/lemonfiber/lemonfiber"]
+# The core, for the adapter kit and the ports this kit answers, and the Servarr client
+# the Servarr adapters share, each at a pinned commit.
+allow-git = [
+  "https://github.com/lemonfiber/lemonfiber",
+  "https://github.com/lemonfiber/adapter-kit-servarr",
+]

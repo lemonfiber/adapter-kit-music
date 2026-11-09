@@ -4,7 +4,7 @@ use adapter_kit_servarr::client::Servarr;
 use lemonfiber_fixtures::http::{Answer, Fake};
 use lemonfiber_ports::http::Method;
 use lemonfiber_ports::service::{
-    CandidateState, Failure, MusicAsk, MusicCurating, MusicUnit, Profile,
+    CandidateState, CuratedUnit, Failure, MusicAsk, MusicCurating, MusicUnit, Profile,
 };
 use serde_json::Value;
 
@@ -331,11 +331,15 @@ async fn the_profiles_are_the_root_folders_quality_and_metadata_profiles_it_hold
         }])
     );
     assert_eq!(
-        with.map(|with| with.metadata),
+        with.as_ref().map(|with| with.metadata.clone()),
         Some(vec![Profile {
             id: 2,
             name: "Standard".to_owned()
         }])
+    );
+    assert_eq!(
+        with.map(|with| with.units),
+        Some(vec![CuratedUnit::Album, CuratedUnit::Artist])
     );
 }
 

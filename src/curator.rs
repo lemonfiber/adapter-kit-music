@@ -224,6 +224,7 @@ impl MusicCurating for Curator {
             root_folders: folders.into_iter().map(|one| one.path).collect(),
             quality: quality.into_iter().map(profile).collect(),
             metadata: metadata.into_iter().map(profile).collect(),
+            units: vec![MusicUnit::Album.into(), MusicUnit::Artist.into()],
         })
     }
 }
