@@ -10,10 +10,16 @@ description = "music.curate as lemonfiber's music curators' adapters answer it"
 publish = false
 
 [dependencies]
+adapter-kit-servarr = { git = "https://github.com/lemonfiber/adapter-kit-servarr", rev = "a2328e68e31b67c1a31c517d15eabfece8eb21bf" }
+async-trait = "0.1"
+lemonfiber-adapter-kit = { git = "https://github.com/lemonfiber/lemonfiber", rev = "d3be340e3365d98a1c8f01ebc2c711f5f7322810" }
+lemonfiber-ports = { git = "https://github.com/lemonfiber/lemonfiber", rev = "d3be340e3365d98a1c8f01ebc2c711f5f7322810" }
 serde = { version = "1", features = ["derive"] }
+serde_json = "1"
 
 [dev-dependencies]
-serde_json = "1"
+lemonfiber-fixtures = { git = "https://github.com/lemonfiber/lemonfiber", rev = "d3be340e3365d98a1c8f01ebc2c711f5f7322810" }
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 
 [lints.rust]
 unsafe_code = "forbid"
