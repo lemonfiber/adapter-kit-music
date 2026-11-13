@@ -1,6 +1,7 @@
 //! `music.curate` as a music curator speaking Lidarr's v1 API answers it: albums and
 //! artists found by words a page at a time, one by its MusicBrainz id, asked for at a
-//! root folder and profiles it holds, and those root folders and profiles.
+//! root folder and profiles it holds, those root folders and profiles, and one it holds
+//! removed with its files.
 
 use adapter_kit_servarr::client::Servarr;
 use async_trait::async_trait;
@@ -13,6 +14,7 @@ use serde::de::DeserializeOwned;
 
 use crate::wire::{Album, Artist, Counted, Folder, Named, Statistics};
 
+mod removing;
 mod requesting;
 
 /// How many candidates one page of a lookup holds.
@@ -226,6 +228,13 @@ impl MusicCurating for Curator {
             metadata: metadata.into_iter().map(profile).collect(),
             units: vec![MusicUnit::Album.into(), MusicUnit::Artist.into()],
         })
+    }
+
+    async fn remove(&self, unit: MusicUnit, reference: &str) -> Result<(), Failure> {
+        match unit {
+            MusicUnit::Album => removing::album(self, reference).await,
+            MusicUnit::Artist => removing::artist(self, reference).await,
+        }
     }
 }
 
