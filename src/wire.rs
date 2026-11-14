@@ -111,6 +111,26 @@ pub struct Counted {
     pub statistics: Option<Statistics>,
 }
 
+/// An album Lidarr holds, as its list of the albums it holds answers it.
+#[derive(Debug, Clone, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Held {
+    /// Lidarr's own id for it.
+    pub id: i64,
+    /// Its MusicBrainz release group id.
+    #[serde(default)]
+    pub foreign_album_id: Option<String>,
+    /// Lidarr's own id for its artist.
+    #[serde(default)]
+    pub artist_id: Option<i64>,
+    /// Whether Lidarr wants it.
+    #[serde(default)]
+    pub monitored: bool,
+    /// How much of it the house holds.
+    #[serde(default)]
+    pub statistics: Option<Statistics>,
+}
+
 /// A quality or metadata profile.
 #[derive(Debug, Clone, Deserialize)]
 pub struct Named {
@@ -159,6 +179,14 @@ impl Statistics {
     #[must_use]
     pub const fn some(self) -> bool {
         self.track_file_count > 0
+    }
+}
+
+impl Held {
+    /// Whether Lidarr wants it or the house holds any track of it.
+    #[must_use]
+    pub fn kept(&self) -> bool {
+        self.monitored || self.statistics.is_some_and(Statistics::some)
     }
 }
 
