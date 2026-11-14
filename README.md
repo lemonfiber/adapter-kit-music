@@ -5,9 +5,12 @@ A household member asks a music curator for an album or a whole artist over
 `music.curate`. This crate answers it once, for every adapter in front of a music
 curator: the lookup of an album or an artist by words, a page at a time; one of them
 by its reference; the request that monitors an album alone or an artist with every
-album and those that come later, then searches where asked; and the root folders and
-profiles a request is made with. Lidarr is the first curator it
-answers for, in its v1 API, through the client `adapter-kit-servarr` holds.
+album and those that come later, then searches where asked; the root folders and
+profiles a request is made with; and the removal of an album or an artist it holds,
+with its files, excluding nothing from a later import. An album's artist goes with it
+where Lidarr wants no other album of theirs and the house holds none. Lidarr is the
+first curator it answers for, in its v1 API, through the client `adapter-kit-servarr`
+holds.
 
 ## How an adapter takes it
 

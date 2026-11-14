@@ -4,13 +4,12 @@
 
 use lemonfiber_ports::http::Method;
 use lemonfiber_ports::service::{Candidate, Failure, MusicAsk, MusicCurating as _};
-use serde::Deserialize;
 use serde_json::{json, Map, Value};
 
 use super::{
     Curator, ALBUMS, ALBUM_LOOKUP, ARTISTS, ARTIST_LOOKUP, BY_ID, THE_ALBUMS, THE_ARTISTS,
 };
-use crate::wire::{Album, Artist};
+use crate::wire::{Album, Artist, Held};
 
 /// Where Lidarr is told which albums it wants.
 const ALBUM_MONITOR: &str = "/album/monitor";
@@ -33,12 +32,6 @@ const NAMED_ALBUMS: &str = "unknown";
 
 /// Said where the catalogue holds no such reference.
 const NOT_IN_THE_CATALOGUE: &str = "its catalogue holds no such reference";
-
-/// One album Lidarr holds, by its id.
-#[derive(Deserialize)]
-struct Held {
-    id: i64,
-}
 
 /// Ask for the album `ask` names alone, searching for it where asked.
 pub(super) async fn album(curator: &Curator, ask: &MusicAsk) -> Result<Candidate, Failure> {

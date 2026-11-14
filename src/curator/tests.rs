@@ -16,7 +16,7 @@ const ABBEY_ROAD: &str = "9162580e";
 
 const BEATLES: &str = "b10bbbfc";
 
-fn curator(fake: &Arc<Fake>) -> Curator {
+pub(super) fn curator(fake: &Arc<Fake>) -> Curator {
     Curator::new(Servarr::new(
         fake.clone(),
         BASE,
@@ -26,7 +26,7 @@ fn curator(fake: &Arc<Fake>) -> Curator {
     ))
 }
 
-fn ok(body: &str) -> Answer {
+pub(super) fn ok(body: &str) -> Answer {
     Answer::reply(200, body.to_owned())
 }
 
@@ -90,7 +90,7 @@ fn at(value: Option<&Value>, pointer: &str) -> Value {
         .unwrap_or_default()
 }
 
-fn refused(failure: Option<Failure>) -> String {
+pub(super) fn refused(failure: Option<Failure>) -> String {
     match failure {
         Some(Failure::Refused { detail, .. }) => detail,
         other => format!("not a refusal: {other:?}"),
