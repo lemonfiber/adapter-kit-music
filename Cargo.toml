@@ -10,15 +10,15 @@ description = "music.curate as lemonfiber's music curators' adapters answer it"
 publish = false
 
 [dependencies]
-adapter-kit-servarr = { git = "https://github.com/lemonfiber/adapter-kit-servarr", rev = "4b3819a47eecbf5d06974ab11783060969f4199f" }
+adapter-kit-servarr = { git = "https://github.com/lemonfiber/adapter-kit-servarr", rev = "5f4a0e417e549d66bfeed6051b6b8c248d5879a6" }
 async-trait = "0.1"
-lemonfiber-adapter-kit = { git = "https://github.com/lemonfiber/lemonfiber", rev = "3eb835ad7625b721ad7b4e6313260f5715e4a50c" }
-lemonfiber-ports = { git = "https://github.com/lemonfiber/lemonfiber", rev = "3eb835ad7625b721ad7b4e6313260f5715e4a50c" }
+lemonfiber-adapter-kit = { git = "https://github.com/lemonfiber/lemonfiber", rev = "40d9386084a42d072b108e55ea6d2461bc45f659" }
+lemonfiber-ports = { git = "https://github.com/lemonfiber/lemonfiber", rev = "40d9386084a42d072b108e55ea6d2461bc45f659" }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 
 [dev-dependencies]
-lemonfiber-fixtures = { git = "https://github.com/lemonfiber/lemonfiber", rev = "3eb835ad7625b721ad7b4e6313260f5715e4a50c" }
+lemonfiber-fixtures = { git = "https://github.com/lemonfiber/lemonfiber", rev = "40d9386084a42d072b108e55ea6d2461bc45f659" }
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 
 [lints.rust]
