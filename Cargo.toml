@@ -10,7 +10,7 @@ description = "music.curate as lemonfiber's music curators' adapters answer it"
 publish = false
 
 [dependencies]
-adapter-kit-servarr = { git = "https://github.com/lemonfiber/adapter-kit-servarr", rev = "71578363a3fe6584330afc45cfbba3b2ff25cfb5" }
+adapter-kit-servarr = { git = "https://github.com/lemonfiber/adapter-kit-servarr", rev = "fbe57258237544f2c1c3429dfaf063ef1cd41cfd" }
 async-trait = "0.1"
 lemonfiber-adapter-kit = { git = "https://github.com/lemonfiber/lemonfiber", rev = "98bd419bed917ea8b3569dea33d7482bcd16eb7c" }
 lemonfiber-ports = { git = "https://github.com/lemonfiber/lemonfiber", rev = "98bd419bed917ea8b3569dea33d7482bcd16eb7c" }
